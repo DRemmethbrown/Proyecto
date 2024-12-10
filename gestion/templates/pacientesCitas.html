@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Gestión de Citas y Pacientes" />
+    <meta name="author" content="Clinica Sanación" />
+    <title>Clinica Sanación - Citas</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Custom Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex flex-column h-100 bg-light">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container px-5">
+                <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Clinica Sanación</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Página principal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pacientesCitas.html">Citas y Pacientes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="doctores.html">Doctores</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Content-->
+        <div class="container px-5 my-5">
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Citas</span></h1>
+            </div>
+            <!-- Button to Add Appointment -->
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#addAppointmentModal">Agregar cita</button>
+
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-11 col-xl-9 col-xxl-8">
+                    <!-- Nuevas Citas Section-->
+                    <section id="nuevasCitasSection">
+                        <h2 class="text-secondary fw-bolder mb-4">Citas Nuevas</h2>
+                    </section>
+
+                    <!-- Próximas Citas Section-->
+                    <section id="proximasCitasSection">
+                        <h2 class="text-secondary fw-bolder mb-4">Próximas Citas</h2>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer-->
+    <footer class="bg-white py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0">Copyright &copy; Clinica Sanación 2024</div></div>
+                <div class="col-auto">
+                    <a class="small" href="#!">Privacy</a>
+                    <span class="mx-1">&middot;</span>
+                    <a class="small" href="#!">Terms</a>
+                    <span class="mx-1">&middot;</span>
+                    <a class="small" href="#!">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal for adding or editing appointment-->
+    <div class="modal fade" id="addAppointmentModal" tabindex="-1" aria-labelledby="addAppointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAppointmentModalLabel">Agregar Nueva Cita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addAppointmentForm">
+                        <div class="mb-3">
+                            <label for="patientName" class="form-label">Nombre del paciente</label>
+                            <input type="text" class="form-control" id="patientName" placeholder="Juan Perez" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="age" class="form-label">Edad</label>
+                            <input type="number" class="form-control" id="age" placeholder="30" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="condition" class="form-label">Padecimiento</label>
+                            <input type="text" class="form-control" id="condition" placeholder="Dolor de cabeza" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentDate" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="appointmentDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentTime" class="form-label">Hora</label>
+                            <input type="time" class="form-control" id="appointmentTime" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="treatment" class="form-label">Tratamiento</label>
+                            <input type="text" class="form-control" id="treatment" placeholder="Consulta General" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Cita</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const citasKey = "citasClinica";
+    
+    // Load existing appointments on page load
+    document.addEventListener("DOMContentLoaded", () => {
+        let storedCitas = JSON.parse(localStorage.getItem(citasKey)) || [];
+    
+        // Eliminar citas pasadas
+        storedCitas = storedCitas.filter(appointment => {
+            const appointmentDateTime = new Date(`${appointment.appointmentDate}T${appointment.appointmentTime}`);
+            return appointmentDateTime > new Date(); // Solo mantener citas futuras
+        });
+    
+        // Guardar citas actualizadas
+        localStorage.setItem(citasKey, JSON.stringify(storedCitas));
+    
+        renderAppointments(storedCitas);
+    });
+    
+    // Add or Edit Appointment
+    document.getElementById("addAppointmentForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+    
+        const patientName = document.getElementById("patientName").value;
+        const age = document.getElementById("age").value;
+        const condition = document.getElementById("condition").value;
+        const appointmentDate = document.getElementById("appointmentDate").value;
+        const appointmentTime = document.getElementById("appointmentTime").value;
+        const treatment = document.getElementById("treatment").value;
+    
+        const newAppointment = { patientName, age, condition, appointmentDate, appointmentTime, treatment };
+    
+        let storedCitas = JSON.parse(localStorage.getItem(citasKey)) || [];
+    
+        if (newAppointment.id) {
+            const index = storedCitas.findIndex(appointment => appointment.id === newAppointment.id);
+            if (index !== -1) {
+                storedCitas[index] = newAppointment; // Update the appointment
+            }
+        } else {
+            newAppointment.id = new Date().getTime(); // Assign a new ID for new appointments
+            storedCitas.push(newAppointment); // Add new appointment
+        }
+    
+        localStorage.setItem(citasKey, JSON.stringify(storedCitas));
+    
+        renderAppointments(storedCitas);
+    
+        const modal = bootstrap.Modal.getInstance(document.getElementById("addAppointmentModal"));
+        modal.hide();
+        this.reset();
+    });
+    
+    // Render Appointments
+    function renderAppointments(appointments) {
+        const today = new Date();
+        document.getElementById("nuevasCitasSection").innerHTML = "";
+        document.getElementById("proximasCitasSection").innerHTML = "";
+    
+        appointments.forEach(({ id, patientName, age, condition, appointmentDate, appointmentTime, treatment }) => {
+            const appointmentDateObj = new Date(`${appointmentDate}T${appointmentTime}`);
+            const sectionId = appointmentDateObj >= today ? "proximasCitasSection" : "nuevasCitasSection";
+    
+            const card = `
+                <div class="card shadow border-0 rounded-4 mb-5">
+                    <div class="card-body p-5">
+                        <h5 class="fw-bolder">${patientName}</h5>
+                        <p class="text-muted">Edad: ${age}</p>
+                        <p class="text-muted">Padecimiento: ${condition}</p>
+                        <p class="text-muted">Fecha: ${appointmentDate}</p>
+                        <p class="text-muted">Hora: ${appointmentTime}</p>
+                        <p class="fst-italic">Tratamiento: ${treatment}</p>
+                        <button class="btn btn-warning btn-sm" onclick="editAppointment(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteAppointment(${id})">Eliminar</button>
+                    </div>
+                </div>`;
+    
+            document.getElementById(sectionId).insertAdjacentHTML("beforeend", card);
+        });
+    }
+    
+    // Edit Appointment
+    function editAppointment(id) {
+        const storedCitas = JSON.parse(localStorage.getItem(citasKey)) || [];
+        const appointmentIndex = storedCitas.findIndex(app => app.id === id);
+    
+        if (appointmentIndex !== -1) {
+            const appointment = storedCitas[appointmentIndex];
+    
+            // Asignar los valores de la cita al formulario, sin cambiar la fecha ni hora
+            document.getElementById("patientName").value = appointment.patientName;
+            document.getElementById("age").value = appointment.age;
+            document.getElementById("condition").value = appointment.condition;
+            document.getElementById("treatment").value = appointment.treatment;
+    
+            // Mostrar el modal de edición
+            const modal = new bootstrap.Modal(document.getElementById("addAppointmentModal"));
+            modal.show();
+    
+            // Guardar el índice de la cita para que se actualice en lugar de crear una nueva
+            document.getElementById("addAppointmentForm").dataset.appointmentIndex = appointmentIndex;
+        }
+    }
+    
+    // Delete Appointment
+    function deleteAppointment(id) {
+        const storedCitas = JSON.parse(localStorage.getItem(citasKey)) || [];
+        const updatedCitas = storedCitas.filter(app => app.id !== id);
+    
+        localStorage.setItem(citasKey, JSON.stringify(updatedCitas));
+        renderAppointments(updatedCitas);
+    }
+    
+    </script>
+</body>
+</html>
